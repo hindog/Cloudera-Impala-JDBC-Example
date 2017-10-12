@@ -11,7 +11,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<impala.jdbc.version>2.5.30</impala.jdbc.version>
+		<impala.jdbc.version>2.5.38</impala.jdbc.version>
         	<uber.jar.name>cloudera-impala-jdbc-example-uber.jar</uber.jar.name>
         	<uber.jar.main.class>com.cloudera.example.ClouderaImpalaJdbcExample</uber.jar.main.class>
 	</properties>
@@ -149,6 +149,24 @@
 							</excludes>
 						</filter>
 					</filters>
+					<relocations>
+						<relocation>
+							<pattern>org.apache.</pattern>
+							<shadedPattern>hidden.org.apache</shadedPattern>
+						</relocation>
+						<relocation>
+							<pattern>org.jboss.</pattern>
+							<shadedPattern>hidden.org.jboss</shadedPattern>
+						</relocation>
+						<relocation>
+							<pattern>org.slf4j.</pattern>
+							<shadedPattern>hidden.org.slf4j</shadedPattern>
+						</relocation>
+						<relocation>
+							<pattern>com.facebook.</pattern>
+							<shadedPattern>hidden.com.facebook</shadedPattern>
+						</relocation>
+					</relocations>
 				</configuration>
 				<executions>
 					<execution>
@@ -178,9 +196,9 @@
 
 		<!-- YOUR LOCAL REPO -->
 		<repository>
-			<id>YOUR.LOCAL.REPO.ID</id>
-			<url><YOUR LOCAL REPO URL></url>
-			<name>YOUR.LOCAL.REPO.NAME</name>
+			<id>local</id>
+			<url>file://${basedir}/repo</url>
+			<name>local repo</name>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
